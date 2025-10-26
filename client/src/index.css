@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #4c5fd5;
+  --color-secondary: #9b5de5;
+  --color-accent: #00c2ba;
+  --color-neutral-light: #f5f7fa;
+  --color-neutral-dark: #2b2d42;
+}
+
+body {
+  @apply bg-[--color-neutral-light] text-[--color-neutral-dark] font-sans;
+}
