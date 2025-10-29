@@ -1,55 +1,30 @@
-# SyncUp — Collaborate. Connect. Grow.
+# SyncUp — Intern Collaboration & Mentorship Platform
 
-### Built by [Bonny Makaniankhondo](#) & [Sofie Garcia ](#)
+SyncUp is a full-stack web application designed to connect interns, mentors, and alumni for collaboration, skill growth, and real-time feedback.
 
----
+## Current Phase — Sprint 1: Development Setup Complete
 
-## Overview
+- ✅ Frontend (React + Vite + Tailwind v4)
+- ✅ Backend (Node.js + Express + MySQL)
+- ✅ Local Database (syncup_local .sql schema)
+- ✅ SDLC Documentation & Design Complete
 
-**SyncUp** is a web platform that helps **interns and early-career developers** collaborate, connect with **alumni mentors**, and grow together.  
-It bridges the gap between internships and long-term learning by combining **team collaboration**, **mentorship**, and **skill tracking** — all powered by **Azure Cognitive Services** and **Power BI** analytics.
+### Project Overview
 
----
+SyncUp enables interns to:
 
-## Core Goals
+- Find and collaborate on projects
+- Connect with mentors and alumni
+- Track skill growth and reflections
 
-- **Collaboration:** Help interns find reliable teammates and manage structured, goal-oriented projects.
-- **Mentorship:** Connect current interns with past interns or early-career professionals for guidance.
-- **Growth:** Track personal and project progress visually to support continuous learning.
+### Tech Stack
 
----
+| Layer             | Tools                              |
+| ----------------- | ---------------------------------- |
+| Frontend          | React, Vite, Tailwind CSS          |
+| Backend           | Node.js, Express                   |
+| Database          | MySQL (local → Azure SQL later)    |
+| Cloud / Analytics | Azure Cognitive Services, Power BI |
+| Version Control   | GitHub                             |
 
-## Tech Stack
-
-| Layer           | Technology                                   |
-| --------------- | -------------------------------------------- |
-| Frontend        | React + Tailwind CSS                         |
-| Backend         | Node.js + Express                            |
-| Database        | Microsoft SQL (Azure SQL Database)           |
-| Cloud           | Azure App Service + Azure Cognitive Services |
-| Analytics       | Power BI Embedded                            |
-| Version Control | GitHub                                       |
-
----
-
-## Current Features (MVP)
-
-- 🔹 Smart teammate matching
-- 🔹 Mentorship Bridge for alumni guidance
-- 🔹 Project showcase feed
-- 🔹 Skill tracker with Power BI visualizations
-- 🔹 Clean, user-friendly dashboard
-
----
-
-## Project Status
-
-| Phase       | Description                         | Status      |
-| ----------- | ----------------------------------- | ----------- |
-| Research    | User survey & insight gathering     | ✅ Complete |
-| Design      | User stories, personas, wireframes  | ✅ Complete |
-| Development | React frontend & Node backend setup | ⏳ Upcoming |
-| Testing     | Feature validation & feedback loop  | ⏳ Pending  |
-| Launch      | Public MVP release                  | 🔜 Planned  |
-
----
+### Repository Structure

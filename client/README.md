@@ -1,16 +1,46 @@
-# React + Vite
+### Contributors
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- **Bonny Makaniankhondo** — Full-Stack Developer
+- **Sofie Garcia** — Front-End Developer & Research Lead
 
-Currently, two official plugins are available:
+### 🔄 Next Steps
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [ ] Implement `/api/users` & `/api/projects` routes
+- [ ] Connect API → React dashboard
+- [ ] Begin MVP feature testing (Sprint 1)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📖 **2️⃣ Frontend README — `/client/README.md`**
 
-## Expanding the ESLint configuration
+```markdown
+# SyncUp Frontend
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Frontend for the SyncUp platform — built with **React + Vite** and styled using **Tailwind CSS v4**.
+
+## Current Phase
+
+✅ Environment setup complete  
+✅ Tailwind v4 manual configuration  
+✅ Theme colors defined (`@theme` tokens)  
+✅ Folder structure created
+
+### Stack
+
+- **React 18**
+- **Vite 7**
+- **Tailwind CSS v4**
+- **PostCSS + Autoprefixer**
+
+### Color System
+
+| Token                   | Color                   | Usage              |
+| ----------------------- | ----------------------- | ------------------ |
+| `--color-primary`       | Indigo Blue #4C5FD5     | Trust / Primary UI |
+| `--color-secondary`     | Electric Purple #9B5DE5 | Accent / Buttons   |
+| `--color-accent`        | Aqua Cyan #00C2BA       | Highlights         |
+| `--color-neutral-light` | Ghost White #F5F7FA     | Background         |
+| `--color-neutral-dark`  | Graphite Gray #2B2D42   | Text               |
+
+### Folder Structure
+```

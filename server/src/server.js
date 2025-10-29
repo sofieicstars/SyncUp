@@ -25,15 +25,29 @@ const dbConfig = {
   },
 };
 
-// Connect to Azure SQL
-async function connectDB() {
+//Mysql connection
+import pool from "./config/db.js";
+
+async function testConnection() {
   try {
-    await sql.connect(dbConfig);
-    console.log(" Connected to Azure SQL Database");
+    const [rows] = await pool.query("SELECT NOW() AS now");
+    console.log("✅ Connected to MySQL at:", rows[0].now);
   } catch (err) {
-    console.error(" Database connection failed:", err.message);
+    console.error("❌ MySQL connection failed:", err.message);
   }
 }
+
+testConnection();
+
+// Connect to Azure SQL
+// async function connectDB() {
+//   try {
+//     await sql.connect(dbConfig);
+//     console.log(" Connected to Azure SQL Database");
+//   } catch (err) {
+//     console.error(" Database connection failed:", err.message);
+//   }
+// }
 // connectDB();
 console.log(" no DB connection yet");
 
