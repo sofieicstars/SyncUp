@@ -2,11 +2,18 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import sql from "mssql";
+import usersRoutes from "./routes/usersRoutes.js";
+import projectsRoutes from "./routes/projectsRoutes.js";
 
 dotenv.config();
 const app = express();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/users", usersRoutes);
+app.use("/api/projects", projectsRoutes);
 
 // Basic route for testing
 app.get("/", (req, res) => {
@@ -31,9 +38,9 @@ import pool from "./config/db.js";
 async function testConnection() {
   try {
     const [rows] = await pool.query("SELECT NOW() AS now");
-    console.log("✅ Connected to MySQL at:", rows[0].now);
+    console.log("Connected to MySQL at:", rows[0].now);
   } catch (err) {
-    console.error("❌ MySQL connection failed:", err.message);
+    console.error("MySQL connection failed:", err.message);
   }
 }
 
