@@ -2,11 +2,20 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import sql from "mssql";
+import usersRoutes from "./routes/usersRoutes.js";
+import projectsRoutes from "./routes/projectsRoutes.js";
+import healthRoute from "./routes/healthRoute.js";
 
 dotenv.config();
 const app = express();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
+app.use("/api/health", healthRoute);
+
+app.use("/api/users", usersRoutes);
+app.use("/api/projects", projectsRoutes);
 
 // Basic route for testing
 app.get("/", (req, res) => {
@@ -31,9 +40,9 @@ import pool from "./config/db.js";
 async function testConnection() {
   try {
     const [rows] = await pool.query("SELECT NOW() AS now");
-    console.log("✅ Connected to MySQL at:", rows[0].now);
+    console.log("Connected to MySQL at:", rows[0].now);
   } catch (err) {
-    console.error("❌ MySQL connection failed:", err.message);
+    console.error("MySQL connection failed:", err.message);
   }
 }
 
@@ -49,7 +58,6 @@ testConnection();
 //   }
 // }
 // connectDB();
-console.log(" no DB connection yet");
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Hey Sofie, Server is on port ${PORT}`));

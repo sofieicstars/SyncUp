@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { checkBackend } from "./utils/api";
+import HealthStatus from "./components/HealthStatus";
 
 export default function App() {
   useEffect(() => {
@@ -9,10 +10,14 @@ export default function App() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-center">
-      <h1 className="text-[--color-primary]">SyncUp Frontend 🚀</h1>
-      <p className="text-[--color-secondary]">
-        Tailwind v4 custom theme active!
-      </p>
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="text-xl font-bold mb-4 text-primary">
+          SyncUp Frontend 🚀
+        </h1>
+        <HealthStatus />
+      </div>
+
+      <p className="text-[--color-secondary]">Hey this is Tailwind</p>
     </div>
   );
 }
