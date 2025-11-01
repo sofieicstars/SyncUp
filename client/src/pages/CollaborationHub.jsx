@@ -7,8 +7,7 @@ export default function CollaborationHub() {
         Collaboration Hub
       </h1>
       <p className="text-neutralDark/70">
-        View and collaborate with project teams. Feature development starts
-        here.
+        View and collaborate with project teams.
       </p>
     </section>
   );
