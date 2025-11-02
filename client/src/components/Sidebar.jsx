@@ -17,11 +17,12 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 rounded-lg text-left font-medium transition-all duration-300 ${
-              activeTab === tab.id
-                ? "bg-white text-primary shadow-md"
-                : "hover:bg-secondary/30"
-            }`}
+            className={`px-4 py-2 rounded-lg text-left font-medium transition-all duration-300
+    ${
+      activeTab === tab.id
+        ? "bg-white text-primary shadow-md border-l-4 border-accent"
+        : "hover:bg-secondary/30 text-white"
+    }`}
           >
             {tab.label}
           </button>

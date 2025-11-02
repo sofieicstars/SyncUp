@@ -31,7 +31,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="flex justify-between items-center bg-white rounded-2xl shadow px-6 py-3 mb-6 relative">
+    <header className="flex justify-between items-center bg-white rounded-2xl shadow px-6 py-4 mb-6 transition-all duration-300">
       {/* Left Section */}
       {user ? (
         <div className="flex items-center gap-3">
