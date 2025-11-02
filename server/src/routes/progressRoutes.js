@@ -1,4 +1,3 @@
-// src/routes/progressRoutes.js
 import express from "express";
 import {
   getProgressUpdates,
@@ -7,10 +6,7 @@ import {
 
 const router = express.Router();
 
-// GET recent updates
 router.get("/", getProgressUpdates);
-
-// POST new update
 router.post("/", createProgressUpdate);
 
 export default router;

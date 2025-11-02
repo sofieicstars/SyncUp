@@ -26,8 +26,7 @@ export default function ProgressFeed() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* Keep the form here */}
+    <div className="flex flex-col gap-6 overflow-visible">
       <AddUpdateForm onNewUpdate={handleNewUpdate} />
 
       {loading ? (

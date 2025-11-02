@@ -30,6 +30,3 @@ body {
   color: var(--color-neutral-dark);
   font-family: sans-serif;
 }
-* {
-  @apply transition-all duration-300 ease-in-out;
-}
