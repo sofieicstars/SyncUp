@@ -27,25 +27,25 @@ export default function HealthStatus() {
 
   useEffect(() => {
     fetchHealth();
-    const interval = setInterval(fetchHealth, 5000); // refresh every 5s
+    const interval = setInterval(fetchHealth, 5000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="p-4 rounded-2xl shadow bg-white border border-gray-200 w-fit text-center">
-      <h2 className="text-lg font-semibold mb-2 text-gray-800">
-        Backend Health
+      <h2 className="text-lg font-semibold mb-2 text-neutralDark">
+        Backend Connection /Database Health
       </h2>
 
       {status === "connected" ? (
         <div className="text-green-600 font-medium">
-          🟢({dbStatus})
+          🟢 {dbStatus}
           <div className="text-xs text-gray-500 mt-1">
             Last checked: {new Date(timestamp).toLocaleTimeString()}
           </div>
         </div>
       ) : status === "error" ? (
-        <div className="text-red-600 font-medium">🔴 ({dbStatus})</div>
+        <div className="text-red-600 font-medium">🔴 {dbStatus}</div>
       ) : (
         <div className="text-yellow-500 font-medium">⏳ Checking...</div>
       )}
