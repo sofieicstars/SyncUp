@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import HealthStatus from "../components/HealthStatus";
-import CollaborationHub from "./CollaborationHub";
+import CollaborationHub from "./CollaborationHub/CollaborationHub";
 import MentorshipBridge from "./MentorshipBridge";
 import SkillTracker from "./SkillTracker";
 
@@ -29,13 +29,9 @@ export default function Dashboard() {
       <div className="flex h-screen bg-neutralLight text-neutralDark">
         <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         <main className="flex-1 p-8 overflow-y-auto">
-          <Navbar /> {/* 🆕 Add here */}
+          <Navbar />
           {renderPage()}
         </main>
-      </div>
-      <div className="flex h-screen bg-neutralLight text-neutralDark">
-        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-        <main className="flex-1 p-8 overflow-y-auto">{renderPage()}</main>
       </div>
     </>
   );

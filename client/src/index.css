@@ -1,28 +1,32 @@
 @import "tailwindcss";
 
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl shadow-md border border-gray-100 
+           hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-[--color-primary] text-white font-medium px-4 py-2 rounded-xl 
+           hover:bg-[--color-secondary] transition disabled:bg-[--color-primary]/60 
+           disabled:cursor-not-allowed;
+  }
+
+  .section-heading {
+    @apply text-lg font-semibold text-[--color-primary] mb-3;
+  }
+}
+
 @theme {
-  --color-primary: #4c5fd5;
-  --color-secondary: #9b5de5;
-  --color-accent: #00c2ba;
-  --color-neutral-light: #f5f7fa;
+  --color-primary: #4c5fd9;
+  --color-secondary: #db5d50;
+  --color-accent: #d92de0;
+  --color-neutral-light: #f5f7f9;
   --color-neutral-dark: #2b2d42;
 }
 
 body {
-  @apply bg-[--color-neutral-light] text-[--color-neutral-dark] font-sans;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.15s ease-out;
+  background-color: var(--color-neutral-light);
+  color: var(--color-neutral-dark);
+  font-family: sans-serif;
 }
