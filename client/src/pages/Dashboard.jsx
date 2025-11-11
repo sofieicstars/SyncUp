@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import HealthStatus from "../components/HealthStatus";
 import CollaborationHub from "./CollaborationHub/CollaborationHub";
-import MentorshipBridge from "./MentorshipBridge";
+import MentorshipBridge from "./MentorshipBridge/MentorshipBridge";
 import SkillTracker from "./SkillTracker";
 
 export default function Dashboard() {
@@ -25,14 +25,15 @@ export default function Dashboard() {
   };
 
   return (
-    <>
-      <div className="flex h-screen bg-neutralLight text-neutralDark">
-        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-        <main className="flex-1 p-8 overflow-y-auto">
-          <Navbar />
-          {renderPage()}
-        </main>
-      </div>
-    </>
+    <div className="flex h-screen bg-neutral-light text-neutral-dark">
+      {/* Sidebar for navigation */}
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+
+      {/* Main content */}
+      <main className="flex-1 p-8 overflow-y-auto">
+        <Navbar />
+        <div className="mt-6">{renderPage()}</div>
+      </main>
+    </div>
   );
 }
