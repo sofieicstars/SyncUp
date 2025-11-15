@@ -3,6 +3,8 @@ import {
   getMentors,
   getSessions,
   createSession,
+  updateSessionStatus,
+  deleteSession,
 } from "../controllers/mentorshipController.js";
 
 const router = express.Router();
@@ -10,10 +12,16 @@ const router = express.Router();
 // GET all mentors
 router.get("/mentors", getMentors);
 
-// GET all sessions (or filtered)
+// GET all sessions
 router.get("/sessions", getSessions);
 
-// POST a new mentorship session
+// POST new mentorship session
 router.post("/sessions", createSession);
+
+// PUT update session status
+router.put("/sessions/:id", updateSessionStatus);
+
+// DELETE session
+router.delete("/sessions/:id", deleteSession);
 
 export default router;
