@@ -1,43 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { API_BASE } from "../../utils/api";
+import { fetchMentors } from "../../utils/api";
 
-export default function MentorList() {
+export default function MentorList({ selectedMentor, setSelectedMentor }) {
   const [mentors, setMentors] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchMentors() {
-      try {
-        const res = await fetch(`${API_BASE}/users?role=mentor`);
-        const data = await res.json();
-        setMentors(data);
-      } catch (error) {
-        console.error("Error fetching mentors:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchMentors();
+    fetchMentors().then((data) => {
+      setMentors(data);
+      setLoading(false);
+    });
   }, []);
 
   if (loading)
     return <p className="text-sm text-gray-500">Loading mentors...</p>;
 
-  if (!mentors.length)
-    return <p className="text-sm text-gray-500">No mentors found.</p>;
-
   return (
     <div className="flex flex-col gap-3">
-      {mentors.map((mentor) => (
-        <div
-          key={mentor.id}
-          className="p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition"
-        >
-          <p className="font-semibold text-secondary">{mentor.name}</p>
-          <p className="text-sm text-gray-500">{mentor.email}</p>
-          <p className="text-xs text-gray-400 capitalize">{mentor.role}</p>
-        </div>
-      ))}
+      {mentors.map((mentor) => {
+        const isActive = selectedMentor === mentor.id;
+
+        return (
+          <button
+            key={mentor.id}
+            onClick={() =>
+              setSelectedMentor(isActive ? null : mentor.id)
+            }
+            className={`
+              w-full text-left p-3 rounded-xl border shadow-sm transition
+              ${isActive 
+                ? "bg-[--color-secondary]/20 border-[--color-secondary]" 
+                : "bg-white border-gray-100 hover:shadow-md"}
+            `}
+          >
+            <p className="font-semibold text-[--color-secondary]">{mentor.name}</p>
+            <p className="text-sm text-gray-500">{mentor.email}</p>
+          </button>
+        );
+      })}
     </div>
   );
 }
