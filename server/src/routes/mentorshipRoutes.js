@@ -1,17 +1,27 @@
-// mentorshipRoutes.js
 import express from "express";
 import {
-  getAllSessions,
+  getMentors,
+  getSessions,
   createSession,
-  getSessionsByUser,
   updateSessionStatus,
+  deleteSession,
 } from "../controllers/mentorshipController.js";
 
 const router = express.Router();
 
-router.get("/sessions", getAllSessions);
-router.get("/sessions/:userId", getSessionsByUser);
+// GET all mentors
+router.get("/mentors", getMentors);
+
+// GET all sessions
+router.get("/sessions", getSessions);
+
+// POST new mentorship session
 router.post("/sessions", createSession);
-router.put("/sessions/:id/status", updateSessionStatus);
+
+// PUT update session status
+router.put("/sessions/:id", updateSessionStatus);
+
+// DELETE session
+router.delete("/sessions/:id", deleteSession);
 
 export default router;
