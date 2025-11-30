@@ -1,26 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Bell, Menu, X } from "lucide-react";
+import { useUser } from "../context/UserContext";
 
-export default function Navbar() {
+export default function Navbar({ activeTab, onToggleSidebar }) {
+  const { user: ctxUser } = useUser();
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeButton, setActiveButton] = useState(null);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
-  // Fetch user placeholder
   useEffect(() => {
-    async function fetchUser() {
-      try {
-        const res = await fetch("http://localhost:5000/api/users");
-        const data = await res.json();
-        setUser(data[0]);
-      } catch (err) {
-        console.error("Failed to load user:", err);
-      }
-    }
-    fetchUser();
-  }, []);
+    if (ctxUser) setUser(ctxUser);
+  }, [ctxUser]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -45,29 +37,51 @@ export default function Navbar() {
     setActiveButton(activeButton === "notification" ? null : "notification");
   };
 
-  return (
-    <header className="flex justify-between items-center bg-white rounded-2xl shadow-md px-6 py-3 mb-6 transition-all duration-300">
-      {/* 🧑‍💼 User Info */}
-      {user ? (
-        <div className="flex items-center gap-3 bg-neutralLight px-4 py-2">
-          <div className="w-8 h-8 bg-secondary/20 flex items-center justify-center rounded-full text-secondary font-semibold">
-            {user.name.charAt(0)}
-          </div>
-          <div>
-            <p className="text-sm font-medium text-neutralDark">
-              Welcome,{" "}
-              <span className="text-primary font-semibold">
-                {user.name.split(" ")[0]}
-              </span>
-            </p>
-            <p className="text-xs text-gray-500 capitalize">{user.role}</p>
-          </div>
-        </div>
-      ) : (
-        <div className="text-gray-400 text-sm">Loading user...</div>
-      )}
+  const titleMap = {
+    collaboration: "Collaboration Hub",
+    mentorship: "Mentorship Bridge",
+    skills: "Skill Tracker",
+    health: "System Health",
+  };
+  const pageTitle = titleMap[activeTab] || "SyncUp";
 
-      {/* 🔔 Notification + Menu */}
+  return (
+    <header className="flex justify-between items-start bg-white rounded-2xl shadow-md px-4 md:px-6 py-3 mb-6 transition-all duration-300">
+      <div className="flex items-start gap-3">
+        <button
+          type="button"
+          className="md:hidden p-2 rounded-full hover:bg-neutralLight transition"
+          onClick={onToggleSidebar}
+          aria-label="Toggle navigation"
+        >
+          <Menu className="w-5 h-5 text-neutralDark" />
+        </button>
+        <div className="flex flex-col gap-1">
+          {user ? (
+            <div className="flex items-center gap-2">
+              <div className="w-9 h-9 bg-secondary/20 flex items-center justify-center rounded-full text-secondary font-semibold">
+                {user.name.charAt(0)}
+              </div>
+              <div>
+                <p className="text-sm font-medium text-neutralDark">
+                  Welcome,{" "}
+                  <span className="text-primary font-semibold">
+                    {user.name.split(" ")[0]}
+                  </span>
+                </p>
+                <p className="text-[11px] text-gray-500 capitalize">
+                  {user.role}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="text-gray-400 text-sm">Loading user...</div>
+          )}
+          <h1 className="text-lg font-semibold text-primary">{pageTitle}</h1>
+        </div>
+      </div>
+
+      {/* Notification + Menu */}
       <div className="flex items-center gap-4 relative" ref={menuRef}>
         {/* Notifications */}
         <button

@@ -1,25 +1,33 @@
 import React, { useState } from "react";
 import { postUpdate } from "../../utils/api";
+import { useUser } from "../../context/UserContext";
 
-export default function AddUpdateForm({ onNewUpdate }) {
+export default function AddUpdateForm({ onNewUpdate, selectedProjectId }) {
+  const { user, loading: userLoading } = useUser();
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!content.trim() || loading) return;
+    if (!content.trim() || loading || userLoading) return;
+    if (!user?.id) {
+      setError("User not loaded yet.");
+      return;
+    }
+    const projectId = selectedProjectId || 1;
 
     try {
       setLoading(true);
       setError("");
-      const newUpdate = await postUpdate(content, 1, 1);
 
+      const newUpdate = await postUpdate(content, projectId, user.id);
       setContent("");
+
       if (onNewUpdate) onNewUpdate(newUpdate);
     } catch (err) {
-      console.error("Error posting update:", err);
-      setError("Something went wrong. Please try again.");
+      console.error(err);
+      setError("Something went wrong. Try again.");
     } finally {
       setLoading(false);
     }
@@ -28,39 +36,34 @@ export default function AddUpdateForm({ onNewUpdate }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-4 rounded-2xl shadow-md w-full"
-      style={{ transition: "none" }}
+      className="bg-white p-4 rounded-2xl shadow-md flex flex-wrap gap-3 items-start"
     >
-      <div className="flex gap-3 items-start" style={{ transition: "none" }}>
-        <textarea
-          className="flex-1 border border-gray-200 rounded-xl p-3 resize-none text-sm focus:outline-none focus:ring-2 focus:ring-[--color-primary]/40 min-h-[60px]"
-          rows="2"
-          placeholder="Share an update..."
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          disabled={loading}
-          style={{ transition: "border-color 0.2s, box-shadow 0.2s" }}
-        />
+      <textarea
+        className="flex-1 border border-gray-200 rounded-xl p-3 resize-none text-sm
+                   focus:outline-none focus:ring-2 focus:ring-primary/40"
+        rows={2}
+        placeholder="Share an update..."
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        disabled={loading}
+      />
 
-        <button
-          type="submit"
-          disabled={loading || !content.trim()}
-          style={{
-            transition: "background-color 0.2s",
-            backgroundColor:
-              loading || !content.trim() ? "#4c5fd9aa" : "#4c5fd9",
-          }}
-          className="px-6 py-2.5 rounded-xl font-medium text-white whitespace-nowrap text-sm min-w-[80px] hover:bg-[#db5d50] disabled:cursor-not-allowed"
-        >
-          {loading ? "Posting..." : "Post"}
-        </button>
-      </div>
+      <button
+        type="submit"
+        disabled={loading || !content.trim()}
+        className={`
+          px-4 py-2 rounded-xl font-medium text-white transition shrink-0
+          ${
+            loading || !content.trim()
+              ? "bg-primary/50 cursor-not-allowed"
+              : "bg-primary hover:bg-secondary"
+          }
+        `}
+      >
+        {loading ? "Posting..." : "Post"}
+      </button>
 
-      {error && (
-        <p className="text-red-500 text-xs mt-2" style={{ transition: "none" }}>
-          {error}
-        </p>
-      )}
+      {error && <p className="text-red-500 text-xs w-full">{error}</p>}
     </form>
   );
 }
