@@ -5,6 +5,9 @@ import sql from "mssql";
 import usersRoutes from "./routes/usersRoutes.js";
 import projectsRoutes from "./routes/projectsRoutes.js";
 import healthRoute from "./routes/healthRoute.js";
+import progressRoutes from "./routes/progressRoutes.js";
+import mentorshipRoutes from "./routes/mentorshipRoutes.js";
+import analyticsRoutes from "./routes/analyticsRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -13,9 +16,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/health", healthRoute);
-
+app.use("/api/progress_updates", progressRoutes);
+app.use("/api/mentorship", mentorshipRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/projects", projectsRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 // Basic route for testing
 app.get("/", (req, res) => {
@@ -29,7 +34,7 @@ const dbConfig = {
   server: process.env.DB_SERVER,
   database: process.env.DB_NAME,
   options: {
-    encrypt: true, // required for Azure
+    encrypt: true,
     trustServerCertificate: true,
   },
 };

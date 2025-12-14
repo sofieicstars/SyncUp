@@ -1,46 +1,93 @@
-### Contributors
-
-- **Bonny Makaniankhondo** — Full-Stack Developer
-- **Sofie Garcia** — Front-End Developer & Research Lead
-
-### 🔄 Next Steps
-
-- [ ] Implement `/api/users` & `/api/projects` routes
-- [ ] Connect API → React dashboard
-- [ ] Begin MVP feature testing (Sprint 1)
-
----
-
-## 📖 **2️⃣ Frontend README — `/client/README.md`**
-
-```markdown
 # SyncUp Frontend
 
-Frontend for the SyncUp platform — built with **React + Vite** and styled using **Tailwind CSS v4**.
+Frontend application for the SyncUp platform, built with React and Vite, styled using Tailwind CSS v4.
 
-## Current Phase
+## Tech Stack
 
-✅ Environment setup complete  
-✅ Tailwind v4 manual configuration  
-✅ Theme colors defined (`@theme` tokens)  
-✅ Folder structure created
+- **React 18** - UI component library
+- **Vite 7** - Build tool and development server
+- **Tailwind CSS v4** - Utility-first CSS framework
+- **PostCSS** - CSS processing
+- **Autoprefixer** - Vendor prefix automation
 
-### Stack
+## Design System
 
-- **React 18**
-- **Vite 7**
-- **Tailwind CSS v4**
-- **PostCSS + Autoprefixer**
-
-### Color System
+### Color Palette
 
 | Token                   | Color                   | Usage              |
 | ----------------------- | ----------------------- | ------------------ |
-| `--color-primary`       | Indigo Blue #4C5FD5     | Trust / Primary UI |
-| `--color-secondary`     | Electric Purple #9B5DE5 | Accent / Buttons   |
-| `--color-accent`        | Aqua Cyan #00C2BA       | Highlights         |
-| `--color-neutral-light` | Ghost White #F5F7FA     | Background         |
-| `--color-neutral-dark`  | Graphite Gray #2B2D42   | Text               |
+| `--color-primary`       | Indigo Blue (#4C5FD5)   | Trust and Primary UI |
+| `--color-secondary`     | Electric Purple (#9B5DE5) | Accent and Buttons   |
+| `--color-accent`        | Aqua Cyan (#00C2BA)     | Highlights         |
+| `--color-neutral-light` | Ghost White (#F5F7FA)   | Background         |
+| `--color-neutral-dark`  | Graphite Gray (#2B2D42) | Text               |
 
-### Folder Structure
+## Folder Structure
+
 ```
+client/
+├── public/              # Static assets
+├── src/
+│   ├── assets/          # Images, fonts, and icons
+│   ├── components/
+│   │   ├── layout/      # Layout components (Header, Footer, Sidebar)
+│   │   └── ui/          # Reusable UI components
+│   ├── data/            # Static data and constants
+│   ├── pages/           # Page-level components
+│   ├── App.jsx          # Root application component
+│   ├── main.jsx         # Application entry point
+│   └── index.css        # Global styles and Tailwind imports
+├── index.html           # HTML template
+├── vite.config.js       # Vite configuration
+├── tailwind.config.js   # Tailwind CSS configuration
+└── package.json         # Project dependencies
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js v20 or higher
+- npm or yarn package manager
+
+### Installation
+
+1. Navigate to the client directory:
+   ```bash
+   cd client
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+### Available Scripts
+
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start development server             |
+| `npm run build`   | Build for production                 |
+| `npm run preview` | Preview production build locally     |
+| `npm run lint`    | Run ESLint for code quality checks   |
+
+## Environment Variables
+
+Create a `.env` file in the client directory with the following variables:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+## Contributing
+
+1. Create a feature branch from `main`
+2. Make your changes following the established code style
+3. Test thoroughly before submitting a pull request
